@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>econnerce</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="{% static 'ecom/style.css' %}" type="text/css" />
+    </head>
+    <body class="bg-dark">
+        <div class="root">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                       <a href="/"><h3 class="text-light">Ecommerce</h3></a>
+                    </div>
+                    <div class="col navlinks">
+                        <ul class="d-flex justify-content-end align-items-center">
+                            <li>
+                                <a class="text-danger" href="#">Shop</a>
+                            </li>
+                            <li>
+                                <a class="text-danger"href="#">Cart</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div hidden class="col-12 px-2">
+                        <input type="text" name="search" id="searchproduct" placeholder="Sesrch product" class="form-control form-control-borederless"/>
+                    </div>
+                </div>
+                 
+                <div class="row justify-content-center">
+                    <div class="card bg-dark">
+                        <img class="rounded-pill my-2 card-img" src="{{product.img}}" alt="{{product.title}}" />
+                   
+                   <div class="card-body">
+                       <h6 class="card-title text-light">{{product.title}}</h6>
+                       <div class="d-flex justify-content-between">
+                           <p class="text-danger">{{product.price}}</p>
+                       </div>
+                       <center>
+                                                            <form class="addtocard" action="" method="post" accept-charset="utf-8">
+                                     {% csrf_token %}
+                                     
+                                     <input hidden type="text" name="" id="productid" value="{{product.id}}" />
+                                     <input type="submit" name="addToCart" id="addToCart" value="Add to cart" class="btn btn-danger" />
+                                 </form>
+                       </center>
+
+                   </div>
+                   
+                   <hr style="color:white"/>
+                   
+                   
+                   
+                   <div class="py3 card-body">
+                       
+                       <h6 class="text-danger">Description</h6>
+                       <p class="text-light">{{product.descr}}</p>
+                   </div>
+                    </div>
+                    
+                    
+                </div>
+                <hr />
+                <div class="row footer  navlinks">
+                    <ul class="col-md-6 d-flex justify-content-evenly">
+                         <li class="">
+                             <a class="text-light" href="#">Shop</a>
+                         </li>
+                          <li class="">
+                             <a class="text-light" href="#">Cart</a>
+                         </li>
+                          <li class="">
+                             <a class="text-light" href="#">Terms</a>
+                         </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

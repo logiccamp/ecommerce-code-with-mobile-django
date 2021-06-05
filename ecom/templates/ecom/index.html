@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>econnerce</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="{% static 'ecom/style.css' %}" type="text/css" />
+    </head>
+    <body class="bg-dark">
+        <div class="root">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                       <a href="/"><h3 class="text-light">Ecommerce</h3></a>
+                    </div>
+                    <div class="col navlinks">
+                        <ul class="d-flex justify-content-end align-items-center">
+                            <li>
+                                <a href="#">Shop</a>
+                            </li>
+                            <li>
+                                <a href="#">Cart</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 px-2">
+                        <input type="text" name="search" id="searchproduct" placeholder="Sesrch product" class="form-control form-control-borederless"/>
+                    </div>
+                </div>
+                 
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-md-4 my-4 p-1 px-2 ">
+                        <div class="card">
+                             <img class="card-img" src="{{product.img}}" alt="product" />
+                             <div class="card-body">
+                                 <div class="card-title">
+                                     <h6>{{ product.title }}</h6>
+                                 </div>
+                                 <div class="card-description">
+                                     ${{product.price}}
+                                 </div>
+                                <div class="d-flex justify-content-between">
+                                    
+                                
+                                 <form class="addtocard" action="" method="post" accept-charset="utf-8">
+                                     {% csrf_token %}
+                                     
+                                     <input hidden type="text" name="" id="productid" value="{{product.id}}" />
+                                     <input type="submit" name="addToCart" id="addToCart" value="Add to cart" class="btn btn-success" />
+                                 </form>
+                                 
+                                 
+                                <a href="/details/{{product.id}}" class="btn btn-warning" >View</a>
+                                 
+                                 
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+                <hr />
+                <div class="row footer navlinks">
+                    <ul class="col-md-6">
+                         <li class="">
+                             <a class="text-light" href="#">Shop</a>
+                         </li>
+                          <li class="">
+                             <a class="text-light" href="#">Cart</a>
+                         </li>
+                          <li class="">
+                             <a class="text-light" href="#">Terms</a>
+                         </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
